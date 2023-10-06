@@ -11,6 +11,7 @@ output: html_document
 ```{r load-packages, message=FALSE}
 # Do not edit this code chunk!
 library(tidyverse) 
+#test
 ```
 
 ```{r load-data, message=FALSE}
@@ -129,8 +130,8 @@ _How many attractions had between 50,000 and 100,000 visitors in 2022?_
 ```{r Ex_f}
 visitors %>% 
   filter(
-    n_2022 >= 50000,
-    n_2022 <= 100000) %>%
+    n_2022 > 50000,
+    n_2022 < 100000) %>%
   count()
 ```
 
@@ -140,8 +141,8 @@ _How many regions have more than 50 tourist attraction in the data set? (Hint: Y
 
 ```{r Ex_g}
 visitors %>% 
-  select(attraction,n_2022)%>%
-  filter(n_2022 > 50)
+  count(region)%>%
+  filter(n > 50)
 ```
 
 
@@ -180,7 +181,9 @@ All values in the output are `NA`!
 _What does `NA` stand for and why are you getting this as your answer to the previous question._
 
 **Write your answer here**
+NA stands for not available. This means there is a missing value in the data set. There can be many reasons for why data might be missing – perhaps the venue does not collect this data or perhaps they failed to submit their data to the Association of Leading Visitor Attractions. Alternatively, it might be possible that the attraction only started in 2022 or perhaps it remained closed in 2021 due COVID-19 risks. It is not possible to determine the correct reason, and manually specifying a value of 0 would not be appropriate as it would imply that the attraction was open but nobody visited!
 
+The mean and median statistics require a full data set in order to be calculated. If there exists at least one NA then the only appropriate mean and median calculation would also be NA.
 
 
 
